@@ -43,4 +43,4 @@ jobs:
           context: ./
           file: ./docker/Dockerfile
           push: true
-          tags: kodelio/kodelio-frontend:prod,kodelio/kodelio-frontend:${GITHUB_SHA::8}
+          tags: kodelio/kodelio-frontend:prod,kodelio/kodelio-frontend:${{GITHUB_SHA::8}}

@@ -2,8 +2,7 @@ version: "3.9"
 
 services:
   kodelio_frontend:
-    # Replaced by Gitlab CI
-    image: kodelio_frontend:prod
+    image: kodelio/kodelio_frontend:${{GITHUB_SHA::8}}
     hostname: "{{.Task.Name}}"
     read_only: true
     cap_drop:
