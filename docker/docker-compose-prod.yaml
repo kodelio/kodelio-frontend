@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  portail:
+  kodelio_frontend:
     # Replaced by Gitlab CI
     image: kodelio_frontend:prod
     hostname: "{{.Task.Name}}"
@@ -23,11 +23,11 @@ services:
       update_config:
         parallelism: 1
         order: start-first
-#    healthcheck:
-#      test: ["CMD", "python3", "docker/healthcheck.py"]
-#      interval: 30s
-#      retries: 3
-#      start_period: 20s
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      retries: 3
+      start_period: 20s
 
     networks:
       - frontend
