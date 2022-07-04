@@ -28,7 +28,7 @@ jobs:
         id: qemu
         uses: docker/setup-qemu-action@v2
         with:
-          image: kodelio/kodelio-frontend:prod
+          image: kodelio/kodelio-frontend:$(echo ${GITHUB_SHA} | cut -c1-8)
           platforms: all
 
       - name: Login to DockerHub
