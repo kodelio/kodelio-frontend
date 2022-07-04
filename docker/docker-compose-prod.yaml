@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  kodelio_frontend:
+    # Replaced by Gitlab CI
+    image: kodelio_frontend:prod
+    hostname: "{{.Task.Name}}"
+    read_only: true
+    cap_drop:
+      - ALL
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "700m"
+        reservations:
+          memory: "450m"
+      restart_policy:
+        # Avoid restart loop
+        max_attempts: 5
+        window: 30s
+      update_config:
+        parallelism: 1
+        order: start-first
+    # healthcheck:
+      # test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      # interval: 30s
+      # retries: 3
+      # start_period: 20s
+
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    driver: overlay
+    attachable: true
+    name: kodelio_frontend_prod
