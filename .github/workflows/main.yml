@@ -22,13 +22,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout repository
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v2
         with:
-          image: kodleio/kodelio-frontend:prod
+          image: kodelio/kodelio-frontend:prod
           platforms: all
           
       - name: Login to DockerHub
