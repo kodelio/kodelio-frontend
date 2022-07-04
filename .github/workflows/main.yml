@@ -43,4 +43,4 @@ jobs:
           context: ./
           file: ./docker/Dockerfile
           push: true
-          tags: kodelio/kodelio_frontend/:prod
+          tags: kodelio/kodelio_frontend:prod
