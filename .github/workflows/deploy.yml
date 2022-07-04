@@ -6,14 +6,14 @@ jobs:
   deploy:
     runs-on: self-hosted
 
-    steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@master
+    steps:            
+      - name: Deploy to Docker swarm
+        uses: wshihadeh/docker-deployment-action@v2
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-            docker stack deploy --with-registry-auth --compose-file docker/docker-compose-prod.yaml kodelio_prod
+          remote_docker_host: ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+          copy_stack_file: true
+          stack_file_name: docker/docker-compose-prod.yaml
+          keep_files: 5
+          args: kodelio_prod
