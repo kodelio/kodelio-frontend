@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   kodelio_frontend:
-    image: kodelio/kodelio_frontend:${{ github.sha }}
+    image: kodelio/kodelio_frontend:${github.sha:-prod}
     hostname: "{{.Task.Name}}"
     read_only: true
     cap_drop:
