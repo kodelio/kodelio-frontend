@@ -7,7 +7,7 @@ jobs:
     runs-on: self-hosted
 
     steps:            
-      - name: Deploy to Docker swarm
+      - name: Deploy to Docker
         uses: wshihadeh/docker-deployment-action@v2
         with:
           remote_docker_host: ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}
@@ -15,5 +15,6 @@ jobs:
           ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
           copy_stack_file: true
           stack_file_name: docker/docker-compose-prod.yaml
+          deploy_path: /home/ubuntu/github
           keep_files: 5
           args: kodelio_prod
