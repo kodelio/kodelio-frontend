@@ -15,7 +15,9 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Login to Docker Hub
-        run: docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        run: |
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+          docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Deploy stack
         run: docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" stack deploy --with-registry-auth --compose-file docker/docker-compose-prod.yaml kodelio_frontend_prod
