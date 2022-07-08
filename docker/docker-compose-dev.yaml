@@ -1,10 +1,12 @@
 version: "3.9"
 
 services:
-  kodelio_frontend:
-    image: kodelio/kodelio_frontend:latest
+  frontend:
+    image: kodelio/kodelio-frontend:dev
     hostname: "{{.Task.Name}}"
     read_only: true
+    ports:
+      - "3000:3000"
     cap_drop:
       - ALL
     deploy:
@@ -30,9 +32,18 @@ services:
 
     networks:
       - frontend
+      
+    volumes:
+      - tmpfs_tmp:/tmp
 
 networks:
   frontend:
     driver: overlay
     attachable: true
-    name: kodelio_frontend_prod
+    name: frontend
+    
+volumes:
+  tmpfs_tmp:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
