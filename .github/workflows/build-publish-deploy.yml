@@ -9,7 +9,7 @@ on:
   
 jobs:
   docker:
-    name: Build and Publish Docker Image
+    name: Build, Publish Docker Image and Deploy via SSH
     runs-on: ubuntu-latest
 
     steps:
@@ -33,11 +33,6 @@ jobs:
       - name: Push image to DockerHub
         run: docker push --all-tags kodelio/kodelio-frontend
 
-  deploy:
-    name: Deploy Docker stack via SSH
-    runs-on: ubuntu-latest
-
-    steps:
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
