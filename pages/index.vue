@@ -1,11 +1,18 @@
 <template>
-  <Tutorial />
+  <div class="text-primary">Hello {{ name }}</div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, computed } from '@vue/composition-api'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'IndexPage',
+  setup() {
+    const name = computed(() => `Kodelio`)
+
+    return {
+      name,
+    }
+  },
 })
 </script>
