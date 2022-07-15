@@ -1,15 +1,15 @@
-name: Build, Publish & Deploy
+name: [dev] Build, Publish & Deploy
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
+  # Triggers the workflow on push or pull request events but only for the "develop" branch
   push:
-    branches: ['master']
+    branches: ['develop']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
 jobs:
-  docker:
-    name: Build, Publish Docker Image and Deploy via SSH
+  task:
+    name: Build, Publish & Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -23,12 +23,10 @@ jobs:
         run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Build the image
-        run: docker build -t kodelio/kodelio-frontend:latest -f ./docker/Dockerfile .
+        run: docker build -t kodelio/kodelio-frontend:dev --build-arg PORT=3000 -f ./docker/Dockerfile .
 
       - name: Tag the image with the latest commit sha
-        run: |
-          docker tag kodelio/kodelio-frontend kodelio/kodelio-frontend:dev
-          docker tag kodelio/kodelio-frontend kodelio/kodelio-frontend:${{ github.sha }}
+        run: docker tag kodelio/kodelio-frontend kodelio/kodelio-frontend:${{ github.sha }}
 
       - name: Push image to DockerHub
         run: docker push --all-tags kodelio/kodelio-frontend
@@ -43,4 +41,6 @@ jobs:
           docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Deploy stack
-        run: docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" stack deploy --with-registry-auth --compose-file docker/docker-compose-dev.yaml kodelio_dev
+        run: |
+          echo -e ${{ secrets.SENTRY_DSN }} > .env && export $(grep -v '^#' .env | xargs)
+          docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" stack deploy --with-registry-auth --compose-file docker/docker-compose-dev.yaml kodelio_dev
