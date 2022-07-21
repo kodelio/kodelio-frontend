@@ -1,4 +1,4 @@
-name: [prod] Build, Publish & Deploy
+name: prod - Build, Publish & Deploy
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
@@ -26,7 +26,7 @@ jobs:
         run: docker build -t kodelio/kodelio-frontend:prod --build-arg PORT=3001 -f ./docker/Dockerfile .
 
       - name: Tag the image with the latest commit sha
-        run: docker tag kodelio/kodelio-frontend kodelio/kodelio-frontend:${{ github.sha }}
+        run: docker tag kodelio/kodelio-frontend:prod kodelio/kodelio-frontend:${{ github.sha }}
 
       - name: Push image to DockerHub
         run: docker push --all-tags kodelio/kodelio-frontend
@@ -41,6 +41,4 @@ jobs:
           docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Deploy stack
-        run: |
-          echo -e ${{ secrets.SENTRY_DSN }} > .env && export $(grep -v '^#' .env | xargs) 
-          docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" stack deploy --with-registry-auth --compose-file docker/docker-compose-dev.yaml kodelio_dev
+        run: docker -H "ssh://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" stack deploy --with-registry-auth --compose-file docker/docker-compose-dev.yaml kodelio_dev

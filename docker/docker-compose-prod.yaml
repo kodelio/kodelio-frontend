@@ -30,9 +30,6 @@ services:
     volumes:
       - tmpfs_tmp:/tmp
 
-    env_file:
-      - .env
-
 networks:
   frontend:
     driver: overlay
