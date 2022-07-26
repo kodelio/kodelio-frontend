@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Kodelio',
+    title: 'Kodelio - Laurent Toson : développement de projets web',
     htmlAttrs: {
       lang: 'fr',
     },
@@ -16,16 +16,22 @@ export default {
         content:
           'Votre entreprise souhaite réaliser un nouveau site ou une application web ou tout simplement mettre à jour une solution existante? Je vous accompagne avec mon expertise dans la réalisation de vos projets, de la conception à la maintenance.',
       },
-      { name: 'author', content: 'Kodelio' },
+      { name: 'author', content: 'Laurent Toson' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/icon.png' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/img/icon.png' },
+      { rel: 'canonical', href: 'https://kodelio.com/' },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    '@/assets/css/main.css',
+    '@fortawesome/fontawesome-svg-core/styles.css',
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/composition-api'],
+  plugins: ['~/plugins/fontawesome.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -36,8 +42,8 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
+    '@nuxtjs/composition-api/module',
+    '@nuxt/postcss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -54,7 +60,20 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  },
+
+  purgeCSS: {
+    whitelistPatterns: [/svg.*/, /fa.*/],
+  },
+
+  devServerHandlers: [],
 
   sentry: {
     dsn: process.env.SENTRY_DSN, // Enter your project's DSN here
