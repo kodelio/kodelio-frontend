@@ -1,5 +1,5 @@
 <template>
-  <nav class="sm:px-8 bg-primary">
+  <nav class="sm:px-8 bg-primary w-full fixed">
     <div class="sm:hidden flex flex-wrap flex-row">
       <img src="/img/icon.png" alt="Kodelio icon" class="h-16 w-auto" />
       <div
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from '@nuxtjs/composition-api'
+import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
 import Section from '@/types/Section'
 
 export default defineComponent({

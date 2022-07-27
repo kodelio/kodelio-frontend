@@ -1,7 +1,16 @@
 <template>
-  <section>
+  <div>
     <HeaderMenu :sections="sections" />
-  </section>
+    <header class="w-full h-screen mx-auto bg-primary flex flex-col">
+      <div class="flex flex-col items-center justify-center h-screen">
+        <img src="/img/full-white.png" class="h-36 object-scale-down" />
+        <h1 class="text-3xl text-white sm:mt-4 text-center">
+          Réalisons ensemble vos projets web
+        </h1>
+      </div>
+      <SectionSeparator color="white" />
+    </header>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,25 +24,21 @@ export default defineComponent({
       {
         id: 'a-propos',
         menu: 'A propos',
-        title: 'Qui est derrière Kodelio ?',
         background: 'white',
       },
       {
         id: 'services',
         menu: null,
-        title: 'Quels services proposes Kodelio ?',
         background: 'primary',
       },
       {
         id: 'projets',
         menu: 'Projets',
-        title: 'Projets',
         background: 'white',
       },
       {
         id: 'contact',
         menu: 'Contact',
-        title: null,
         background: 'primary',
       },
     ])
