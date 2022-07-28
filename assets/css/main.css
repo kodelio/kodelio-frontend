@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: Arista Pro Regular;
+  src: url('/fonts/Arista-Pro-Regular.ttf');
+  font-display: swap;
+}
+
+body {
+  font-family: Arista Pro Regular;
+}
