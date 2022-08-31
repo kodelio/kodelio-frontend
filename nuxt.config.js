@@ -14,7 +14,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Votre entreprise souhaite réaliser un nouveau site ou une application web ou tout simplement mettre à jour une solution existante? Je vous accompagne avec mon expertise dans la réalisation de vos projets, de la conception à la maintenance.',
+          'Votre entreprise souhaite réaliser un nouveau site, une application web ou mobile ou tout simplement mettre à jour une solution existante? Je vous accompagne avec mon expertise dans la réalisation de vos projets, de la conception à la maintenance.',
       },
       { name: 'author', content: 'Laurent Toson' },
     ],

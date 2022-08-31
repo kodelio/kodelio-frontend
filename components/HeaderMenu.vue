@@ -24,7 +24,7 @@
         >
           <a
             class="text-white text-2xl hover:text-secondary block pl-3 pr-3 py-4"
-            href="#"
+            :href="linkToSection(menuSection)"
             >{{ menuSection.menu }}</a
           >
         </li>
@@ -56,7 +56,11 @@ export default defineComponent({
       isMenuMobileOpen.value = !isMenuMobileOpen.value
     }
 
-    return { menuSections, isMenuMobileOpen, toggleMobileMenu }
+    const linkToSection = computed(() => (section: Section) => {
+      return `#${section.id}`
+    })
+
+    return { menuSections, isMenuMobileOpen, toggleMobileMenu, linkToSection }
   },
 })
 </script>
