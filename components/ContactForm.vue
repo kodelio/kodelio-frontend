@@ -129,7 +129,7 @@ export default defineComponent({
       }
 
       if (!isError) {
-        const res = await $axios.post(`/.netlify/functions/contact`, {
+        const res = await $axios.post(`/netlify/functions/contact`, {
           firstname: firstname.value,
           lastname: lastname.value,
           email: email.value,
