@@ -1,7 +1,7 @@
 <template>
   <nav class="sm:px-8 bg-primary w-full fixed">
     <div class="sm:hidden flex flex-wrap flex-row">
-      <img src="/img/icon.png" alt="Kodelio icon" class="h-16 w-auto" />
+      <img src="img/icon.png" alt="Kodelio icon" class="h-16 w-auto" />
       <div
         class="flex items-center justify-end ml-auto"
         @click="toggleMobileMenu()"

@@ -4,13 +4,13 @@
     <header class="w-full h-screen mx-auto bg-primary flex flex-col">
       <div class="flex flex-col items-center justify-center h-screen">
         <img
-          src="/img/full-white.webp"
+          src="img/full-white.webp"
           alt="Kodelio logo"
           class="h-36 object-scale-down"
         />
-        <h1 class="title text-white sm:mt-4">
-          Réalisons ensemble vos projets web
-        </h1>
+        <div class="text-white sm:mt-4 title">
+          <h1>Réalisons ensemble vos projets web.</h1>
+        </div>
       </div>
       <SectionSeparator color="white" />
     </header>
@@ -45,17 +45,30 @@
       </div>
       <SectionSeparator color="primary" />
     </div>
+    <div id="contact" class="bg-primary">
+      <div class="grid md:grid-cols-2 p-8">
+        <div class="flex items-center justify-center">
+          <h1 class="title text-white">
+            Une question ? <br />Un projet ? <br />N'hésitez pas à prendre
+            contact !
+          </h1>
+        </div>
+        <ContactForm />
+      </div>
+      <SectionSeparator color="white" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from '@nuxtjs/composition-api'
+import ContactForm from '~/components/ContactForm.vue'
 import RoundImage from '~/components/RoundImage.vue'
 import Section from '@/types/Section'
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { RoundImage },
+  components: { RoundImage, ContactForm },
   setup() {
     const sections = ref<Section[]>([
       {
@@ -63,14 +76,11 @@ export default defineComponent({
         menu: 'Services',
       },
       {
-        id: 'projets',
-        menu: 'Projets',
-      },
-      {
         id: 'contact',
         menu: 'Contact',
       },
     ])
+
     return { sections }
   },
 })
