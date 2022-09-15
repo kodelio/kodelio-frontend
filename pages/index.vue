@@ -12,9 +12,9 @@
           <h1>Réalisons ensemble vos projets web.</h1>
         </div>
       </div>
-      <SectionSeparator color="white" />
+      <SectionSeparator id="services" color="white" />
     </header>
-    <div id="services" class="bg-white">
+    <div class="bg-white">
       <div class="grid md:grid-cols-3 p-8">
         <div class="col-span-2 flex flex-col text-white">
           <h1 class="title mt-4 text-secondary">
@@ -43,9 +43,9 @@
           class="hidden md:block"
         />
       </div>
-      <SectionSeparator color="primary" />
+      <SectionSeparator id="contact" color="primary" />
     </div>
-    <div id="contact" class="bg-primary">
+    <div class="bg-primary">
       <div class="grid md:grid-cols-2 p-8">
         <div class="flex items-center justify-center">
           <h1 class="title text-white">

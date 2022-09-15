@@ -1,5 +1,5 @@
 <template>
-  <form class="mt-2 p-4" name="contact" netlify>
+  <form class="mt-2 p-4" name="contact">
     <div class="flex flex-col text-black">
       <div class="grid md:grid-cols-2 gap-4 md:gap-16 p-2">
         <input
@@ -76,11 +76,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { defineComponent, ref, useContext } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   name: 'ContactForm',
   setup() {
+    const { $axios } = useContext()
     const firstname = ref<string>('')
     const lastname = ref<string>('')
     const email = ref<string>('')
@@ -128,16 +129,34 @@ export default defineComponent({
       }
 
       if (!isError) {
-        success.value = 'Le message a bien été envoyé'
-        clearFields()
-        setTimeout(() => {
-          success.value = ''
-        }, 5000)
-      } else {
-        setTimeout(() => {
-          error.value = ''
-        }, 5000)
+        const grecaptcha = window.grecaptcha
+        grecaptcha.enterprise.ready(async () => {
+          const token = await grecaptcha.enterprise.execute(
+            '6LfgRf4hAAAAAIVbXdRI_C2UiC720AKrP-q7ON9Q',
+            { action: 'FORM_EMAIL_SUBMIT' }
+          )
+          const res = await $axios.post(`/.netlify/functions/contact`, {
+            firstname: firstname.value,
+            lastname: lastname.value,
+            email: email.value,
+            message: message.value,
+            token,
+          })
+
+          if (res.status === 200) {
+            success.value = 'Le message a bien été envoyé'
+            clearFields()
+            setTimeout(() => {
+              success.value = ''
+            }, 5000)
+          } else {
+            error.value = "Une erreur est survenue lors de l'envoi du message"
+          }
+        })
       }
+      setTimeout(() => {
+        error.value = ''
+      }, 5000)
     }
 
     return { firstname, lastname, email, message, error, success, onSubmit }

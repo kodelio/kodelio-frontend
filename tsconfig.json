@@ -21,7 +21,8 @@
       "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/sentry",
-      "unplugin-vue2-script-setup/types"
+      "unplugin-vue2-script-setup/types",
+      "@types/grecaptcha"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
