@@ -27,6 +27,8 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/composition-api": "^0.33.0",
     "@nuxtjs/sentry": "^5.1.7",
+    "@types/grecaptcha": "^3.0.4",
+    "axios": "^0.27.2",
     "core-js": "^3.19.3",
     "node-mailjet": "^5.1.1",
     "nuxt": "^2.15.8",

@@ -109,7 +109,7 @@ export default defineComponent({
       message.value = ''
     }
 
-    const onSubmit = async () => {
+    const onSubmit = () => {
       let isError = false
       error.value = ''
       success.value = ''
@@ -129,22 +129,30 @@ export default defineComponent({
       }
 
       if (!isError) {
-        const res = await $axios.post(`/netlify/functions/contact`, {
-          firstname: firstname.value,
-          lastname: lastname.value,
-          email: email.value,
-          message: message.value,
-        })
+        const grecaptcha = window.grecaptcha
+        grecaptcha.enterprise.ready(async () => {
+          const token = await grecaptcha.enterprise.execute(
+            '6LfgRf4hAAAAAIVbXdRI_C2UiC720AKrP-q7ON9Q',
+            { action: 'FORM_EMAIL_SUBMIT' }
+          )
+          const res = await $axios.post(`/.netlify/functions/contact`, {
+            firstname: firstname.value,
+            lastname: lastname.value,
+            email: email.value,
+            message: message.value,
+            token,
+          })
 
-        if (res.status === 200) {
-          success.value = 'Le message a bien été envoyé'
-          clearFields()
-          setTimeout(() => {
-            success.value = ''
-          }, 5000)
-        } else {
-          error.value = "Une erreur est survenue lors de l'envoi du message"
-        }
+          if (res.status === 200) {
+            success.value = 'Le message a bien été envoyé'
+            clearFields()
+            setTimeout(() => {
+              success.value = ''
+            }, 5000)
+          } else {
+            error.value = "Une erreur est survenue lors de l'envoi du message"
+          }
+        })
       }
       setTimeout(() => {
         error.value = ''

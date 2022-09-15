@@ -22,6 +22,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: 'img/icon.png' },
       { rel: 'canonical', href: 'https://kodelio.com/' },
     ],
+    script: [
+      {
+        src: 'https://www.google.com/recaptcha/enterprise.js?render=6LfgRf4hAAAAAIVbXdRI_C2UiC720AKrP-q7ON9Q',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
