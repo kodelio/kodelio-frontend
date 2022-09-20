@@ -1,7 +1,12 @@
 <template>
   <nav class="sm:px-8 bg-primary w-full fixed">
     <div class="sm:hidden flex flex-wrap flex-row">
-      <img src="img/icon.png" alt="Kodelio icon" class="h-16 w-auto" />
+      <img
+        src="img/icon.png"
+        alt="Kodelio icon"
+        class="h-16 w-auto cursor-pointer"
+        @click="scrollTo()"
+      />
       <div
         class="flex items-center justify-end ml-auto"
         @click="toggleMobileMenu()"
@@ -22,10 +27,10 @@
           :key="menuSection.id"
           class="text-center"
         >
-          <a
-            class="text-white text-2xl hover:text-secondary block pl-3 pr-3 py-4"
-            :href="linkToSection(menuSection)"
-            >{{ menuSection.menu }}</a
+          <span
+            class="text-white text-2xl hover:text-secondary block pl-3 pr-3 py-4 cursor-pointer"
+            @click="scrollTo(menuSection.id)"
+            >{{ menuSection.menu }}</span
           >
         </li>
       </ul>
@@ -56,11 +61,29 @@ export default defineComponent({
       isMenuMobileOpen.value = !isMenuMobileOpen.value
     }
 
+    function scrollTo(id?: string) {
+      if (id) {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      isMenuMobileOpen.value = false
+    }
+
     const linkToSection = computed(() => (section: Section) => {
       return `#${section.id}`
     })
 
-    return { menuSections, isMenuMobileOpen, toggleMobileMenu, linkToSection }
+    return {
+      menuSections,
+      isMenuMobileOpen,
+      toggleMobileMenu,
+      scrollTo,
+      linkToSection,
+    }
   },
 })
 </script>

@@ -9,7 +9,7 @@
           class="h-36 object-scale-down"
         />
         <div class="text-white sm:mt-4 title">
-          <h1>Réalisons ensemble vos projets web.</h1>
+          <h1 class="px-4">Réalisons ensemble vos projets web.</h1>
         </div>
       </div>
       <SectionSeparator id="services" color="white" />
