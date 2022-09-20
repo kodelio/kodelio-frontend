@@ -57,18 +57,30 @@
       </div>
       <SectionSeparator color="white" />
     </div>
+    <div class="bg-white">
+      <PageFooter class="mt-4 mb-2" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from '@nuxtjs/composition-api'
 import ContactForm from '~/components/ContactForm.vue'
+import HeaderMenu from '~/components/HeaderMenu.vue'
+import PageFooter from '~/components/PageFooter.vue'
 import RoundImage from '~/components/RoundImage.vue'
 import Section from '@/types/Section'
+import SectionSeparator from '~/components/SectionSeparator.vue'
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { RoundImage, ContactForm },
+  components: {
+    HeaderMenu,
+    RoundImage,
+    ContactForm,
+    SectionSeparator,
+    PageFooter,
+  },
   setup() {
     const sections = ref<Section[]>([
       {
