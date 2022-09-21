@@ -3,10 +3,11 @@
     <HeaderMenu :sections="sections" />
     <header class="w-full h-screen mx-auto bg-primary flex flex-col">
       <div class="flex flex-col items-center justify-center h-screen">
-        <img
+        <nuxt-img
           src="img/full-white.webp"
           alt="Kodelio logo"
           class="h-36 object-scale-down"
+          sizes="xs:321px sm:600px"
         />
         <div class="text-white sm:mt-4 title">
           <h1 class="px-4">Réalisons ensemble vos projets web.</h1>
@@ -17,9 +18,9 @@
     <div class="bg-white">
       <div class="grid md:grid-cols-3 p-8">
         <div class="col-span-2 flex flex-col text-white">
-          <h1 class="title mt-4 text-secondary">
+          <h2 class="title mt-4 text-main-blue">
             Quels services proposes Kodelio ?
-          </h1>
+          </h2>
           <p
             class="mt-4 text-center md:text-left py-6 md:px-28 text-xl text-black"
           >
@@ -48,10 +49,10 @@
     <div class="bg-primary">
       <div class="grid md:grid-cols-2 p-8">
         <div class="flex items-center justify-center">
-          <h1 class="title text-white">
+          <h2 class="title text-white">
             Une question ? <br />Un projet ? <br />N'hésitez pas à prendre
             contact !
-          </h1>
+          </h2>
         </div>
         <ContactForm />
       </div>
@@ -94,6 +95,52 @@ export default defineComponent({
     ])
 
     return { sections }
+  },
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Kodelio - Laurent Toson : développement de projets web',
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content:
+            'Votre entreprise souhaite réaliser une application web ou mobile? Je vous accompagne dans la réalisation de vos projets, de la conception à la maintenance.',
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'website',
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: 'https://kodelio.com/img/full-white.webp',
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: 'https://kodelio.com/',
+        },
+        {
+          property: 'og:locale',
+          content: 'fr_FR',
+        },
+        {
+          hid: 'twitter:site',
+          property: 'twitter:site',
+          content: '@_kodelio',
+        },
+        {
+          hid: 'twitter:creator',
+          property: 'twitter:creator',
+          content: '@_kodelio',
+        },
+      ],
+    }
   },
 })
 </script>

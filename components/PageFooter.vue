@@ -1,16 +1,26 @@
 <template>
   <div class="m-auto">
     <div class="flex flex-row justify-center">
-      <RoundIcon
-        :icon="['fab', 'linkedin-in']"
-        class="text-3xl text-white bg-main-blue mx-2 pt-2 pl-3"
-        @onClick="openLinkedInProfile"
-      />
-      <RoundIcon
-        icon="calendar"
-        class="text-2xl text-white bg-secondary mx-2 pt-[0.52rem] pl-[0.865rem]"
-        @onClick="openCalendly"
-      />
+      <a
+        href="https://www.linkedin.com/in/laurenttoson/"
+        rel="linkedin"
+        target="_blank"
+      >
+        <RoundIcon
+          :icon="['fab', 'linkedin-in']"
+          class="text-3xl text-white bg-main-blue mx-2 pt-2 pl-3"
+        />
+      </a>
+      <a
+        href="https://calendly.com/laurent-kodelio/reunion-1-heure"
+        rel="calendly"
+        target="_blank"
+      >
+        <RoundIcon
+          icon="calendar"
+          class="text-2xl text-white bg-secondary mx-2 pt-[0.52rem] pl-[0.865rem]"
+        />
+      </a>
     </div>
     <p class="mt-2 text-2xl text-center text-black">
       Copyright {{ copyrightDate }} - Laurent Toson EI
@@ -30,18 +40,7 @@ export default defineComponent({
       return new Date().getFullYear()
     })
 
-    const openLinkedInProfile = () => {
-      window.open('https://www.linkedin.com/in/laurenttoson/', '_blank')
-    }
-
-    const openCalendly = () => {
-      window.open(
-        'https://calendly.com/laurent-kodelio/reunion-1-heure',
-        '_blank'
-      )
-    }
-
-    return { copyrightDate, openLinkedInProfile, openCalendly }
+    return { copyrightDate }
   },
 })
 </script>

@@ -1,10 +1,13 @@
 <template>
   <nav class="sm:px-8 bg-primary w-full fixed">
     <div class="sm:hidden flex flex-wrap flex-row">
-      <img
+      <nuxt-img
         src="img/icon.png"
         alt="Kodelio icon"
+        title="Kodelio icon"
         class="h-16 w-auto cursor-pointer"
+        width="128"
+        height="128"
         @click="scrollTo()"
       />
       <div

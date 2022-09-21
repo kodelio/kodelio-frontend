@@ -29,7 +29,7 @@
       <div class="flex flex-col lg:flex-row lg:justify-between mt-2">
         <button
           type="submit"
-          class="h-12 bg-main-blue text-white w-32 rounded-lg text-xl ml-2 hover:bg-secondary hover:text-black align-center"
+          class="h-12 bg-secondary text-black w-32 rounded-lg text-xl ml-2 hover:bg-main-blue hover:text-white align-center"
           @click.prevent="onSubmit"
         >
           Envoyer
@@ -109,7 +109,7 @@ export default defineComponent({
       message.value = ''
     }
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
       let isError = false
       error.value = ''
       success.value = ''
@@ -129,30 +129,22 @@ export default defineComponent({
       }
 
       if (!isError) {
-        const grecaptcha = window.grecaptcha
-        grecaptcha.enterprise.ready(async () => {
-          const token = await grecaptcha.enterprise.execute(
-            '6LfgRf4hAAAAAIVbXdRI_C2UiC720AKrP-q7ON9Q',
-            { action: 'FORM_EMAIL_SUBMIT' }
-          )
-          const res = await $axios.post(`/.netlify/functions/contact`, {
-            firstname: firstname.value,
-            lastname: lastname.value,
-            email: email.value,
-            message: message.value,
-            token,
-          })
-
-          if (res.status === 200) {
-            success.value = 'Le message a bien été envoyé'
-            clearFields()
-            setTimeout(() => {
-              success.value = ''
-            }, 5000)
-          } else {
-            error.value = "Une erreur est survenue lors de l'envoi du message"
-          }
+        const res = await $axios.post(`/.netlify/functions/contact`, {
+          firstname: firstname.value,
+          lastname: lastname.value,
+          email: email.value,
+          message: message.value,
         })
+
+        if (res.status === 200) {
+          success.value = 'Le message a bien été envoyé'
+          clearFields()
+          setTimeout(() => {
+            success.value = ''
+          }, 5000)
+        } else {
+          error.value = "Une erreur est survenue lors de l'envoi du message"
+        }
       }
       setTimeout(() => {
         error.value = ''
