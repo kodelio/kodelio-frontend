@@ -1,7 +1,9 @@
 <template>
-  <img
+  <nuxt-img
     :src="src"
     :alt="alt"
+    :title="alt"
+    loading="lazy"
     class="rounded-full border border-2 object-cover w-48 h-48 m-auto shadow-lg"
     @click="$emit('onClick')"
   />

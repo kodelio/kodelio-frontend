@@ -14,18 +14,19 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Votre entreprise souhaite réaliser un nouveau site, une application web ou mobile ou tout simplement mettre à jour une solution existante? Je vous accompagne avec mon expertise dans la réalisation de vos projets, de la conception à la maintenance.',
+          'Votre entreprise souhaite réaliser une application web ou mobile? Je vous accompagne dans la réalisation de vos projets, de la conception à la maintenance.',
+      },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'mobile, react-native, nestjs, tailwind, mobile, tailwindcss, web, nuxtjs, back-end, vuejs, front-end, web, developpement, developpeur, full-stack, fullstack, node, nextjs, reactjs, antipolis, applications, nodejs, vue, react, logiciels, expo, sophia-antipolis, nuxt, site, sophia, javascript, next, netlify, ios, sites, node.js, vue.js, react.js, software, site, nuxt.js, nest, application, app, nice, blog, freelance, typescript',
       },
       { name: 'author', content: 'Laurent Toson' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'img/icon.png' },
-      { rel: 'canonical', href: 'https://kodelio.com/' },
-    ],
-    script: [
-      {
-        src: 'https://www.google.com/recaptcha/enterprise.js?render=6LfgRf4hAAAAAIVbXdRI_C2UiC720AKrP-q7ON9Q',
-      },
+      { hid: 'canonical', rel: 'canonical', href: 'https://kodelio.com/' },
     ],
   },
 
@@ -49,6 +50,7 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/composition-api/module',
     '@nuxt/postcss8',
+    '@nuxt/image',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

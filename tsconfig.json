@@ -22,7 +22,7 @@
       "@types/node",
       "@nuxtjs/sentry",
       "unplugin-vue2-script-setup/types",
-      "@types/grecaptcha"
+      "@nuxt/image"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
