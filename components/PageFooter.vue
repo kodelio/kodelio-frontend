@@ -5,6 +5,7 @@
         href="https://www.linkedin.com/in/laurenttoson/"
         rel="linkedin noopener noreferrer"
         target="_blank"
+        alt="LinkedIn"
       >
         <RoundIcon
           :icon="['fab', 'linkedin-in']"
@@ -15,6 +16,7 @@
         href="https://calendly.com/laurent-kodelio/reunion-1-heure"
         rel="calendly noopener noreferrer"
         target="_blank"
+        alt="Calendly"
       >
         <RoundIcon
           icon="calendar"

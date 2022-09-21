@@ -21,8 +21,7 @@
       "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/sentry",
-      "unplugin-vue2-script-setup/types",
-      "@nuxt/image"
+      "unplugin-vue2-script-setup/types"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
