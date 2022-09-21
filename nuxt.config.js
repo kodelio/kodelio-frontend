@@ -50,7 +50,6 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/composition-api/module',
     '@nuxt/postcss8',
-    '@nuxt/image',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

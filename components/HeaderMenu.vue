@@ -1,7 +1,7 @@
 <template>
   <nav class="sm:px-8 bg-primary w-full fixed">
     <div class="sm:hidden flex flex-wrap flex-row">
-      <nuxt-img
+      <img
         src="img/icon.png"
         alt="Kodelio icon"
         title="Kodelio icon"

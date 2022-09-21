@@ -3,11 +3,12 @@
     <HeaderMenu :sections="sections" />
     <header class="w-full h-screen mx-auto bg-primary flex flex-col">
       <div class="flex flex-col items-center justify-center h-screen">
-        <nuxt-img
+        <img
           src="img/full-white.webp"
           alt="Kodelio logo"
           class="h-36 object-scale-down"
-          sizes="xs:321px sm:600px"
+          width="600"
+          height="144"
         />
         <div class="text-white sm:mt-4 title">
           <h1 class="px-4">Réalisons ensemble vos projets web.</h1>
