@@ -3,7 +3,7 @@
     <div class="flex flex-row justify-center">
       <a
         href="https://www.linkedin.com/in/laurenttoson/"
-        rel="linkedin"
+        rel="linkedin noopener noreferrer"
         target="_blank"
       >
         <RoundIcon
@@ -13,7 +13,7 @@
       </a>
       <a
         href="https://calendly.com/laurent-kodelio/reunion-1-heure"
-        rel="calendly"
+        rel="calendly noopener noreferrer"
         target="_blank"
       >
         <RoundIcon
