@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row mb-0 h-14">
+  <div class="flex flex-row -mb-px h-14">
     <div
       class="h-full w-1/3 rounded-tr-full"
       :class="{

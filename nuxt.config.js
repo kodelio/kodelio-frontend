@@ -25,7 +25,14 @@ export default {
       { name: 'author', content: 'Laurent Toson' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'img/icon.png' },
+      { rel: 'icon', type: 'image/x-icon', href: 'img/icon.webp' },
+      {
+        rel: 'preload',
+        fetchpriority: 'high',
+        as: 'image',
+        type: 'image/webp',
+        href: 'img/full-white.webp',
+      },
       { hid: 'canonical', rel: 'canonical', href: 'https://kodelio.com/' },
     ],
   },
