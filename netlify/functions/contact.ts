@@ -8,7 +8,9 @@ const mailjet = new Mailjet({
 
 const handler: Handler = async (event) => {
   if (event.httpMethod === 'POST' && event.body) {
-    const { firstname, lastname, email, message } = JSON.parse(event.body)
+    const { firstname, lastname, email, message, phone } = JSON.parse(
+      event.body
+    )
     const data: sendMailjet.IBody = {
       Messages: [
         {
@@ -22,7 +24,7 @@ const handler: Handler = async (event) => {
           ],
           Headers: { 'Reply-To': email },
           Subject: 'Nouveau message sur kodelio.com',
-          HTMLPart: `Nom : <b>${firstname} ${lastname}</b><br />Adresse e-mail : ${email}<br />Message :<br /> ${message}`,
+          HTMLPart: `Nom : <b>${firstname} ${lastname}</b><br />Adresse e-mail : ${email}<br />Message :<br /> ${message}<br />SPAM :<br /> ${phone}`,
           TextPart: `Nom : ${firstname} ${lastname}\nAdresse e-mail : ${email}\nMessage :\n ${message}`,
         },
       ],

@@ -6,6 +6,7 @@
         rel="linkedin noopener noreferrer"
         target="_blank"
         alt="LinkedIn"
+        aria-label="LinkedIn"
       >
         <RoundIcon
           :icon="['fab', 'linkedin-in']"
@@ -17,6 +18,7 @@
         rel="calendly noopener noreferrer"
         target="_blank"
         alt="Calendly"
+        aria-label="Calendly"
       >
         <RoundIcon
           icon="calendar"

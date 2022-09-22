@@ -14,6 +14,13 @@
           placeholder="Prénom"
           name="firstname"
         />
+        <input
+          id="phone"
+          type="text"
+          name="phone"
+          tabindex="-1"
+          autocomplete="off"
+        />
       </div>
       <div class="grid grid-cols-1 p-2">
         <input v-model="email" type="email" placeholder="Email" name="email" />
@@ -86,8 +93,11 @@ export default defineComponent({
     const lastname = ref<string>('')
     const email = ref<string>('')
     const message = ref<string>('')
+    const phone = ref<string>('')
     const error = ref<string>('')
     const success = ref<string>('')
+
+    let timestampStart: Date = new Date()
 
     function isStringValid(str: string) {
       return str && str.length > 0
@@ -114,6 +124,10 @@ export default defineComponent({
       error.value = ''
       success.value = ''
 
+      const timestampEnd: Date = new Date()
+      let timeDiffSeconds: number =
+        (timestampEnd.getTime() - timestampStart.getTime()) / 1000
+
       if (!isStringValid(firstname.value)) {
         isError = true
         error.value = 'Veuillez renseigner votre prénom'
@@ -128,12 +142,15 @@ export default defineComponent({
         error.value = 'Veuillez renseigner un message'
       }
 
-      if (!isError) {
+      if (!isError && timeDiffSeconds > 7) {
+        timeDiffSeconds = 0
+        timestampStart = new Date()
         const res = await $axios.post(`/.netlify/functions/contact`, {
           firstname: firstname.value,
           lastname: lastname.value,
           email: email.value,
           message: message.value,
+          phone: phone.value,
         })
 
         if (res.status === 200) {
@@ -172,5 +189,9 @@ input {
 
 textarea {
   @apply rounded-lg text-left text-xl p-2;
+}
+
+#phone {
+  @apply hidden;
 }
 </style>
