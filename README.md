@@ -1,6 +1,8 @@
-# kodelio-frontend
 
-## Build Setup
+# Kodelio website
+Project is using [Nuxt v2](https://nuxtjs.org/docs/get-started/installation) with [Composition API](https://composition-api.nuxtjs.org/getting-started/introduction).
+
+## Setup and launch project
 
 ```bash
 # install dependencies
@@ -8,6 +10,9 @@ $ yarn install
 
 # serve with hot reload at localhost:3000
 $ yarn dev
+
+# lint code before Git commits
+$ yarn run lintfix
 
 # build for production and launch server
 $ yarn build
@@ -17,7 +22,18 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## Netlify functions
+
+For the form submission, code is located in `netlify/functions/contact.ts`.
+For detailed explanation on Netlify functions, check out the [documentation](https://docs.netlify.com/functions/overview/).
+
+## Sending email
+
+We use Mailjet and package [node-mailjet](https://www.npmjs.com/package/node-mailjet) for sending emails.
+
+## Errors tracking
+
+We use [Sentry](https://sentry.io/) and package [nuxt/sentry](https://sentry.nuxtjs.org/) for tracking errors.
 
 ## Special Directories
 
@@ -34,12 +50,6 @@ More information about the usage of this directory in [the documentation](https:
 The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
 
 ### `pages`
 
@@ -60,9 +70,3 @@ This directory contains your static files. Each file inside this directory is ma
 Example: `/static/robots.txt` is mapped as `/robots.txt`.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
