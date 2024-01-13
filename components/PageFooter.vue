@@ -34,7 +34,7 @@
       >
         <img
           src="img/malt.webp"
-          class="w-13 mx-2 hover:shadow-lg rounded-full"
+          class="w-12 mx-2 hover:shadow-lg rounded-full"
         />
       </a>
     </div>
