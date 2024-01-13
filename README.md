@@ -1,5 +1,5 @@
-
 # Kodelio website
+
 Project is using [Nuxt v2](https://nuxtjs.org/docs/get-started/installation) with [Composition API](https://composition-api.nuxtjs.org/getting-started/introduction).
 
 ## Setup and launch project
