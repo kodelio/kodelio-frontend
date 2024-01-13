@@ -96,6 +96,7 @@
             Allez voir ce que mes partenaires font :
             <a
               target="_blank"
+              rel="noopener noreferrer"
               href="https://tekeo.studio/"
               class="hover:text-secondary text-main-blue"
               >Tekeo</a
@@ -103,6 +104,7 @@
             ,
             <a
               target="_blank"
+              rel="noopener noreferrer"
               href="https://corpuscloud.com/"
               class="hover:text-secondary text-main-blue"
               >CorpusCloud</a
