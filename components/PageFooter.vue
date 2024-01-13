@@ -25,9 +25,21 @@
           class="text-2xl text-white bg-secondary mx-2 pt-[0.52rem] pl-[0.865rem]"
         />
       </a>
+      <a
+        href="https://www.malt.fr/profile/devfullstack"
+        rel="malt noopener noreferrer"
+        target="_blank"
+        alt="Malt"
+        aria-label="Malt"
+      >
+        <img
+          src="img/malt.webp"
+          class="w-13 mx-2 hover:shadow-lg rounded-full"
+        />
+      </a>
     </div>
     <p class="mt-2 text-2xl text-center text-black">
-      Copyright {{ copyrightDate }} - Laurent Toson EI
+      Copyright {{ copyrightDate }} - Laurent Toson
     </p>
   </div>
 </template>

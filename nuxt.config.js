@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Kodelio - Laurent Toson : développement de projets web',
+    title: 'Kodelio - Laurent Toson : développeur full-stack JavaScript',
     htmlAttrs: {
       lang: 'fr',
     },
@@ -20,7 +20,7 @@ export default {
         hid: 'keywords',
         name: 'keywords',
         content:
-          'mobile, react-native, nestjs, tailwind, mobile, tailwindcss, web, nuxtjs, back-end, vuejs, front-end, web, developpement, developpeur, full-stack, fullstack, node, nextjs, reactjs, antipolis, applications, nodejs, vue, react, logiciels, expo, sophia-antipolis, nuxt, site, sophia, javascript, next, netlify, ios, sites, node.js, vue.js, react.js, software, site, nuxt.js, nest, application, app, nice, blog, freelance, typescript',
+          'mobile, react-native, nestjs, tailwind, mobile, tailwindcss, web, nuxtjs, back-end, vuejs, front-end, web, developpement, developpeur, full-stack, fullstack, node, nextjs, reactjs, antipolis, applications, nodejs, vue, react, logiciels, expo, sophia-antipolis, nuxt, site, sophia, javascript, next, netlify, ios, sites, node.js, vue.js, react.js, software, site, nuxt.js, nest, application, app, nice, blog, freelance, typescript, supabase, api',
       },
       { name: 'author', content: 'Laurent Toson' },
     ],
