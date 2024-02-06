@@ -26,7 +26,7 @@
         />
       </a>
       <a
-        href="https://www.malt.fr/profile/devfullstack"
+        href="https://www.malt.fr/profile/laurenttoson"
         rel="malt noopener noreferrer"
         target="_blank"
         alt="Malt"
