@@ -20,7 +20,7 @@
       <div class="grid md:grid-cols-3 p-8">
         <div class="col-span-2 flex flex-col text-white">
           <h2 class="title mt-4 text-main-blue">
-            Quels services proposes Kodelio ?
+            Quels services propose Kodelio ?
           </h2>
           <p
             class="mt-4 text-center md:text-left py-6 md:px-28 text-xl text-black"
