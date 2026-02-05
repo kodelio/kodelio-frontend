@@ -3,7 +3,8 @@
   publish = ".output/public"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "24"
+  COREPACK_ENABLE_STRICT = "0"
 
 [build.processing]
   skip_processing = true

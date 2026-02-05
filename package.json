@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "yarn@4.11.0",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",

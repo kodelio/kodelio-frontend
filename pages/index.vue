@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderMenu :sections="sections" />
+    <HeaderMenu v-if="showAllSections" :sections="sections" />
     <header class="w-full h-screen mx-auto bg-primary flex flex-col">
       <div class="flex flex-col items-center justify-center h-screen">
         <img
@@ -14,9 +14,9 @@
           <h1 class="px-4">Réalisons ensemble vos projets web.</h1>
         </div>
       </div>
-      <SectionSeparator id="services" color="white" />
+      <SectionSeparator v-if="showAllSections" id="services" color="white" />
     </header>
-    <div class="bg-white">
+    <div v-if="showAllSections" class="bg-white">
       <div class="grid md:grid-cols-3 p-8">
         <div class="col-span-2 flex flex-col text-white">
           <h2 class="title mt-4 text-main-blue">
@@ -47,7 +47,7 @@
       </div>
       <SectionSeparator id="about" color="primary" />
     </div>
-    <div class="bg-primary">
+    <div v-if="showAllSections" class="bg-primary">
       <div class="grid md:grid-cols-3 p-8">
         <RoundImage
           src="/img/laurent.webp"
@@ -78,7 +78,7 @@
       </div>
       <SectionSeparator id="partners" color="white" />
     </div>
-    <div class="bg-white">
+    <div v-if="showAllSections" class="bg-white">
       <div class="grid md:grid-cols-3 p-8">
         <div class="col-span-2 flex flex-col text-white">
           <h2 class="title mt-4 text-main-blue">Partenaires</h2>
@@ -119,7 +119,7 @@
       </div>
       <SectionSeparator id="contact" color="primary" />
     </div>
-    <div class="bg-primary">
+    <div v-if="showAllSections" class="bg-primary">
       <div class="grid md:grid-cols-2 p-8">
         <div class="flex items-center justify-center">
           <h2 class="title text-white">
@@ -131,7 +131,7 @@
       </div>
       <SectionSeparator color="white" />
     </div>
-    <div class="bg-white">
+    <div v-if="showAllSections" class="bg-white">
       <PageFooter class="mt-4 mb-2" />
     </div>
   </div>
@@ -139,6 +139,8 @@
 
 <script setup lang="ts">
 import type { Section } from '~/types/Section'
+
+const showAllSections = ref(false)
 
 const sections = ref<Section[]>([
   {
