@@ -4,7 +4,7 @@
     <header class="w-full h-screen mx-auto bg-primary flex flex-col">
       <div class="flex flex-col items-center justify-center h-screen">
         <img
-          src="img/full-white.webp"
+          src="/img/full-white.webp"
           alt="Kodelio logo"
           class="h-36 object-scale-down"
           width="600"
@@ -40,7 +40,7 @@
           </p>
         </div>
         <RoundImage
-          src="img/icon-background.webp"
+          src="/img/icon-background.webp"
           alt="Kodelio icon"
           class="hidden md:block"
         />
@@ -50,7 +50,7 @@
     <div class="bg-primary">
       <div class="grid md:grid-cols-3 p-8">
         <RoundImage
-          src="img/laurent.webp"
+          src="/img/laurent.webp"
           alt="Photo Laurent"
           class="hidden md:block"
         />
@@ -112,7 +112,7 @@
           </p>
         </div>
         <RoundImage
-          src="img/partners.webp"
+          src="/img/partners.webp"
           alt="Partners logos"
           class="hidden md:block"
         />
@@ -137,93 +137,64 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
-import ContactForm from '~/components/ContactForm.vue'
-import HeaderMenu from '~/components/HeaderMenu.vue'
-import PageFooter from '~/components/PageFooter.vue'
-import RoundImage from '~/components/RoundImage.vue'
-import Section from '@/types/Section'
-import SectionSeparator from '~/components/SectionSeparator.vue'
+<script setup lang="ts">
+import type { Section } from '~/types/Section'
 
-export default defineComponent({
-  name: 'IndexPage',
-  components: {
-    HeaderMenu,
-    RoundImage,
-    ContactForm,
-    SectionSeparator,
-    PageFooter,
+const sections = ref<Section[]>([
+  {
+    id: 'services',
+    menu: 'Services',
   },
-  setup() {
-    const sections = ref<Section[]>([
-      {
-        id: 'services',
-        menu: 'Services',
-      },
-      {
-        id: 'about',
-        menu: 'A propos',
-      },
-      {
-        id: 'partners',
-        menu: 'Partenaires',
-      },
-      {
-        id: 'contact',
-        menu: 'Contact',
-      },
-    ])
+  {
+    id: 'about',
+    menu: 'A propos',
+  },
+  {
+    id: 'partners',
+    menu: 'Partenaires',
+  },
+  {
+    id: 'contact',
+    menu: 'Contact',
+  },
+])
 
-    return { sections }
-  },
-  head() {
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content:
-            'Kodelio - Laurent Toson : développeur full-stack JavaScript',
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content:
-            'Votre entreprise souhaite réaliser une application web ou mobile? Je vous accompagne dans la réalisation de vos projets, de la conception à la maintenance.',
-        },
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'website',
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: 'https://kodelio.com/img/full-white.webp',
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: 'https://kodelio.com/',
-        },
-        {
-          property: 'og:locale',
-          content: 'fr_FR',
-        },
-        {
-          hid: 'twitter:site',
-          property: 'twitter:site',
-          content: '@_kodelio',
-        },
-        {
-          hid: 'twitter:creator',
-          property: 'twitter:creator',
-          content: '@_kodelio',
-        },
-      ],
-    }
-  },
+useHead({
+  meta: [
+    {
+      property: 'og:title',
+      content: 'Kodelio - Laurent Toson : développeur full-stack JavaScript',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Votre entreprise souhaite réaliser une application web ou mobile? Je vous accompagne dans la réalisation de vos projets, de la conception à la maintenance.',
+    },
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:image',
+      content: 'https://kodelio.com/img/full-white.webp',
+    },
+    {
+      property: 'og:url',
+      content: 'https://kodelio.com/',
+    },
+    {
+      property: 'og:locale',
+      content: 'fr_FR',
+    },
+    {
+      property: 'twitter:site',
+      content: '@_kodelio',
+    },
+    {
+      property: 'twitter:creator',
+      content: '@_kodelio',
+    },
+  ],
 })
 </script>
 

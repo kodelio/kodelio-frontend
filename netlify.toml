@@ -1,2 +1,25 @@
+[build]
+  command = "npm run generate"
+  publish = ".output/public"
+
+[build.environment]
+  NODE_VERSION = "20"
+
 [build.processing]
   skip_processing = true
+
+# Rate limiting for contact form (5 requests per minute per IP)
+[functions]
+  [functions.contact]
+    rate_limit = { window_limit = 5, window_size = 60, aggregate = { function = ["contact"], key = "ip" } }
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.sentry.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://*.sentry.io https://*.netlify.com"

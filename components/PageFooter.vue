@@ -33,7 +33,7 @@
         aria-label="Malt"
       >
         <img
-          src="img/malt.webp"
+          src="/img/malt.webp"
           class="w-12 mx-2 hover:shadow-lg rounded-full"
         />
       </a>
@@ -44,19 +44,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-import RoundIcon from '~/components/RoundIcon.vue'
-
-export default defineComponent({
-  name: 'PageFooter',
-  components: { RoundIcon },
-  setup() {
-    const copyrightDate = computed(() => {
-      return new Date().getFullYear()
-    })
-
-    return { copyrightDate }
-  },
-})
+<script setup lang="ts">
+const copyrightDate = computed(() => new Date().getFullYear())
 </script>

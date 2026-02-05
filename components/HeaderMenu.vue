@@ -2,7 +2,7 @@
   <nav class="sm:px-8 bg-primary w-full fixed">
     <div class="sm:hidden flex flex-wrap flex-row">
       <img
-        src="img/icon.png"
+        src="/img/icon.png"
         alt="Kodelio icon"
         title="Kodelio icon"
         class="h-16 w-auto cursor-pointer"
@@ -14,7 +14,7 @@
         class="flex items-center justify-end ml-auto"
         @click="toggleMobileMenu()"
       >
-        <font-awesome-icon
+        <FontAwesomeIcon
           icon="fa-solid fa-bars"
           class="text-white text-2xl cursor-pointer p-4"
         />
@@ -41,52 +41,32 @@
   </nav>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
-import Section from '@/types/Section'
+<script setup lang="ts">
+import type { Section } from '~/types/Section'
 
-export default defineComponent({
-  name: 'HeaderMenu',
-  props: {
-    sections: {
-      type: Array as () => Section[],
-      required: true,
-    },
-  },
-  setup(props) {
-    const menuSections = computed(() =>
-      props.sections.filter((section) => section.menu)
-    )
+const props = defineProps<{
+  sections: Section[]
+}>()
 
-    const isMenuMobileOpen = ref<Boolean>(false)
+const menuSections = computed(() =>
+  props.sections.filter((section) => section.menu),
+)
 
-    function toggleMobileMenu() {
-      isMenuMobileOpen.value = !isMenuMobileOpen.value
+const isMenuMobileOpen = ref(false)
+
+function toggleMobileMenu() {
+  isMenuMobileOpen.value = !isMenuMobileOpen.value
+}
+
+function scrollTo(id?: string) {
+  if (id) {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
     }
-
-    function scrollTo(id?: string) {
-      if (id) {
-        const element = document.getElementById(id)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
-      isMenuMobileOpen.value = false
-    }
-
-    const linkToSection = computed(() => (section: Section) => {
-      return `#${section.id}`
-    })
-
-    return {
-      menuSections,
-      isMenuMobileOpen,
-      toggleMobileMenu,
-      scrollTo,
-      linkToSection,
-    }
-  },
-})
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  isMenuMobileOpen.value = false
+}
 </script>
