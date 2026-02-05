@@ -1,10 +1,10 @@
 <template>
   <div>
-    <HeaderMenu :sections="sections" />
+    <HeaderMenu v-if="showAllSections" :sections="sections" />
     <header class="w-full h-screen mx-auto bg-primary flex flex-col">
       <div class="flex flex-col items-center justify-center h-screen">
         <img
-          src="img/full-white.webp"
+          src="/img/full-white.webp"
           alt="Kodelio logo"
           class="h-36 object-scale-down"
           width="600"
@@ -14,9 +14,9 @@
           <h1 class="px-4">Réalisons ensemble vos projets web.</h1>
         </div>
       </div>
-      <SectionSeparator id="services" color="white" />
+      <SectionSeparator v-if="showAllSections" id="services" color="white" />
     </header>
-    <div class="bg-white">
+    <div v-if="showAllSections" class="bg-white">
       <div class="grid md:grid-cols-3 p-8">
         <div class="col-span-2 flex flex-col text-white">
           <h2 class="title mt-4 text-main-blue">
@@ -40,17 +40,17 @@
           </p>
         </div>
         <RoundImage
-          src="img/icon-background.webp"
+          src="/img/icon-background.webp"
           alt="Kodelio icon"
           class="hidden md:block"
         />
       </div>
       <SectionSeparator id="about" color="primary" />
     </div>
-    <div class="bg-primary">
+    <div v-if="showAllSections" class="bg-primary">
       <div class="grid md:grid-cols-3 p-8">
         <RoundImage
-          src="img/laurent.webp"
+          src="/img/laurent.webp"
           alt="Photo Laurent"
           class="hidden md:block"
         />
@@ -78,7 +78,7 @@
       </div>
       <SectionSeparator id="partners" color="white" />
     </div>
-    <div class="bg-white">
+    <div v-if="showAllSections" class="bg-white">
       <div class="grid md:grid-cols-3 p-8">
         <div class="col-span-2 flex flex-col text-white">
           <h2 class="title mt-4 text-main-blue">Partenaires</h2>
@@ -112,14 +112,14 @@
           </p>
         </div>
         <RoundImage
-          src="img/partners.webp"
+          src="/img/partners.webp"
           alt="Partners logos"
           class="hidden md:block"
         />
       </div>
       <SectionSeparator id="contact" color="primary" />
     </div>
-    <div class="bg-primary">
+    <div v-if="showAllSections" class="bg-primary">
       <div class="grid md:grid-cols-2 p-8">
         <div class="flex items-center justify-center">
           <h2 class="title text-white">
@@ -131,99 +131,72 @@
       </div>
       <SectionSeparator color="white" />
     </div>
-    <div class="bg-white">
+    <div v-if="showAllSections" class="bg-white">
       <PageFooter class="mt-4 mb-2" />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
-import ContactForm from '~/components/ContactForm.vue'
-import HeaderMenu from '~/components/HeaderMenu.vue'
-import PageFooter from '~/components/PageFooter.vue'
-import RoundImage from '~/components/RoundImage.vue'
-import Section from '@/types/Section'
-import SectionSeparator from '~/components/SectionSeparator.vue'
+<script setup lang="ts">
+import type { Section } from '~/types/Section'
 
-export default defineComponent({
-  name: 'IndexPage',
-  components: {
-    HeaderMenu,
-    RoundImage,
-    ContactForm,
-    SectionSeparator,
-    PageFooter,
-  },
-  setup() {
-    const sections = ref<Section[]>([
-      {
-        id: 'services',
-        menu: 'Services',
-      },
-      {
-        id: 'about',
-        menu: 'A propos',
-      },
-      {
-        id: 'partners',
-        menu: 'Partenaires',
-      },
-      {
-        id: 'contact',
-        menu: 'Contact',
-      },
-    ])
+const showAllSections = ref(false)
 
-    return { sections }
+const sections = ref<Section[]>([
+  {
+    id: 'services',
+    menu: 'Services',
   },
-  head() {
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content:
-            'Kodelio - Laurent Toson : développeur full-stack JavaScript',
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content:
-            'Votre entreprise souhaite réaliser une application web ou mobile? Je vous accompagne dans la réalisation de vos projets, de la conception à la maintenance.',
-        },
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'website',
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: 'https://kodelio.com/img/full-white.webp',
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: 'https://kodelio.com/',
-        },
-        {
-          property: 'og:locale',
-          content: 'fr_FR',
-        },
-        {
-          hid: 'twitter:site',
-          property: 'twitter:site',
-          content: '@_kodelio',
-        },
-        {
-          hid: 'twitter:creator',
-          property: 'twitter:creator',
-          content: '@_kodelio',
-        },
-      ],
-    }
+  {
+    id: 'about',
+    menu: 'A propos',
   },
+  {
+    id: 'partners',
+    menu: 'Partenaires',
+  },
+  {
+    id: 'contact',
+    menu: 'Contact',
+  },
+])
+
+useHead({
+  meta: [
+    {
+      property: 'og:title',
+      content: 'Kodelio - Laurent Toson : développeur full-stack JavaScript',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Votre entreprise souhaite réaliser une application web ou mobile? Je vous accompagne dans la réalisation de vos projets, de la conception à la maintenance.',
+    },
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:image',
+      content: 'https://kodelio.com/img/full-white.webp',
+    },
+    {
+      property: 'og:url',
+      content: 'https://kodelio.com/',
+    },
+    {
+      property: 'og:locale',
+      content: 'fr_FR',
+    },
+    {
+      property: 'twitter:site',
+      content: '@_kodelio',
+    },
+    {
+      property: 'twitter:creator',
+      content: '@_kodelio',
+    },
+  ],
 })
 </script>
 
