@@ -31,7 +31,7 @@
           rows="5"
           placeholder="Message"
           name="message"
-        ></textarea>
+        />
       </div>
       <div class="flex flex-col lg:flex-row lg:justify-between mt-2">
         <button
@@ -49,7 +49,7 @@
           >
             <div class="flex items-center">
               <div class="py-1">
-                <font-awesome-icon
+                <FontAwesomeIcon
                   icon="exclamation-circle"
                   class="text-4xl h-6 w-6 mr-4"
                 />
@@ -66,7 +66,7 @@
           >
             <div class="flex items-center">
               <div class="py-1">
-                <font-awesome-icon
+                <FontAwesomeIcon
                   icon="check-circle"
                   class="text-4xl h-6 w-6 mr-4"
                 />
@@ -82,95 +82,89 @@
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, useContext } from '@nuxtjs/composition-api'
+<script setup lang="ts">
+const firstname = ref('')
+const lastname = ref('')
+const email = ref('')
+const message = ref('')
+const phone = ref('')
+const error = ref('')
+const success = ref('')
 
-export default defineComponent({
-  name: 'ContactForm',
-  setup() {
-    const { $axios } = useContext()
-    const firstname = ref<string>('')
-    const lastname = ref<string>('')
-    const email = ref<string>('')
-    const message = ref<string>('')
-    const phone = ref<string>('')
-    const error = ref<string>('')
-    const success = ref<string>('')
+let timestampStart = new Date()
 
-    let timestampStart: Date = new Date()
+function isStringValid(str: string) {
+  return str && str.length > 0
+}
 
-    function isStringValid(str: string) {
-      return str && str.length > 0
-    }
+function isEmailValid(emailValue: string) {
+  return (
+    emailValue &&
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      emailValue.toString(),
+    )
+  )
+}
 
-    function isEmailValid(email: string) {
-      return (
-        email &&
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-          email.toString()
-        )
-      )
-    }
+function clearFields() {
+  firstname.value = ''
+  lastname.value = ''
+  email.value = ''
+  message.value = ''
+}
 
-    function clearFields() {
-      firstname.value = ''
-      lastname.value = ''
-      email.value = ''
-      message.value = ''
-    }
+async function onSubmit() {
+  let isError = false
+  error.value = ''
+  success.value = ''
 
-    const onSubmit = async () => {
-      let isError = false
-      error.value = ''
-      success.value = ''
+  const timestampEnd = new Date()
+  let timeDiffSeconds =
+    (timestampEnd.getTime() - timestampStart.getTime()) / 1000
 
-      const timestampEnd: Date = new Date()
-      let timeDiffSeconds: number =
-        (timestampEnd.getTime() - timestampStart.getTime()) / 1000
+  if (!isStringValid(firstname.value)) {
+    isError = true
+    error.value = 'Veuillez renseigner votre prénom'
+  } else if (!isStringValid(lastname.value)) {
+    isError = true
+    error.value = 'Veuillez renseigner votre nom'
+  } else if (!isEmailValid(email.value)) {
+    isError = true
+    error.value = 'Veuillez renseigner un email valide'
+  } else if (!isStringValid(message.value)) {
+    isError = true
+    error.value = 'Veuillez renseigner un message'
+  }
 
-      if (!isStringValid(firstname.value)) {
-        isError = true
-        error.value = 'Veuillez renseigner votre prénom'
-      } else if (!isStringValid(lastname.value)) {
-        isError = true
-        error.value = 'Veuillez renseigner votre nom'
-      } else if (!isEmailValid(email.value)) {
-        isError = true
-        error.value = 'Veuillez renseigner un email valide'
-      } else if (!isStringValid(message.value)) {
-        isError = true
-        error.value = 'Veuillez renseigner un message'
-      }
+  if (!isError && timeDiffSeconds > 7) {
+    timeDiffSeconds = 0
+    timestampStart = new Date()
 
-      if (!isError && timeDiffSeconds > 7) {
-        timeDiffSeconds = 0
-        timestampStart = new Date()
-        const res = await $axios.post(`/.netlify/functions/contact`, {
+    try {
+      await $fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        body: {
           firstname: firstname.value,
           lastname: lastname.value,
           email: email.value,
           message: message.value,
           phone: phone.value,
-        })
+        },
+      })
 
-        if (res.status === 200) {
-          success.value = 'Le message a bien été envoyé'
-          clearFields()
-          setTimeout(() => {
-            success.value = ''
-          }, 5000)
-        } else {
-          error.value = "Une erreur est survenue lors de l'envoi du message"
-        }
-      }
+      success.value = 'Le message a bien été envoyé'
+      clearFields()
       setTimeout(() => {
-        error.value = ''
+        success.value = ''
       }, 5000)
+    } catch {
+      error.value = "Une erreur est survenue lors de l'envoi du message"
     }
-
-    return { firstname, lastname, email, message, error, success, onSubmit }
-  },
-})
+  }
+  setTimeout(() => {
+    error.value = ''
+  }, 5000)
+}
 </script>
 
 <style>

@@ -5,24 +5,17 @@
     :title="alt"
     loading="lazy"
     class="rounded-full border border-2 object-cover w-48 h-48 m-auto shadow-lg"
-    @click="$emit('onClick')"
+    @click="emit('onClick')"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+<script setup lang="ts">
+defineProps<{
+  src: string
+  alt: string
+}>()
 
-export default defineComponent({
-  name: 'RoundImage',
-  props: {
-    src: {
-      type: String,
-      required: true,
-    },
-    alt: {
-      type: String,
-      required: true,
-    },
-  },
-})
+const emit = defineEmits<{
+  onClick: []
+}>()
 </script>
