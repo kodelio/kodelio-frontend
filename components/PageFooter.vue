@@ -1,49 +1,69 @@
 <template>
-  <div class="m-auto">
+  <footer class="m-auto px-4 pb-6 text-black">
     <div class="flex flex-row justify-center">
       <a
-        href="https://www.linkedin.com/in/laurenttoson/"
-        rel="linkedin noopener noreferrer"
+        :href="contact.linkedinUrl"
+        rel="noopener noreferrer"
         target="_blank"
-        alt="LinkedIn"
-        aria-label="LinkedIn"
+        aria-label="Profil LinkedIn de Laurent Toson"
       >
         <RoundIcon
           :icon="['fab', 'linkedin-in']"
-          class="text-3xl text-white bg-main-blue mx-2 pt-2 pl-3"
+          class="mx-2 bg-main-blue pl-3 pt-2 text-3xl text-white"
         />
       </a>
       <a
-        href="https://calendly.com/laurent-kodelio/reunion-1-heure"
-        rel="calendly noopener noreferrer"
+        :href="contact.bookingUrl"
+        rel="noopener noreferrer"
         target="_blank"
-        alt="Calendly"
-        aria-label="Calendly"
+        aria-label="Prendre rendez-vous"
       >
         <RoundIcon
           icon="calendar"
-          class="text-2xl text-white bg-secondary mx-2 pt-[0.52rem] pl-[0.865rem]"
+          class="mx-2 bg-secondary pl-[0.865rem] pt-[0.52rem] text-2xl text-white"
         />
       </a>
       <a
-        href="https://www.malt.fr/profile/laurenttoson"
-        rel="malt noopener noreferrer"
+        :href="contact.maltUrl"
+        rel="noopener noreferrer"
         target="_blank"
-        alt="Malt"
-        aria-label="Malt"
+        aria-label="Profil Malt de Laurent Toson"
       >
         <img
           src="/img/malt.webp"
-          class="w-12 mx-2 hover:shadow-lg rounded-full"
+          alt="Malt"
+          class="mx-2 w-12 rounded-full hover:shadow-lg"
         />
       </a>
     </div>
-    <p class="mt-2 text-2xl text-center text-black">
-      Copyright {{ copyrightDate }} - Laurent Toson
-    </p>
-  </div>
+
+    <nav
+      class="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-lg"
+      aria-label="Liens légaux"
+    >
+      <NuxtLink to="/" class="hover:text-main-blue">Accueil</NuxtLink>
+      <NuxtLink to="/support" class="hover:text-main-blue">Support</NuxtLink>
+      <NuxtLink to="/mentions-legales" class="hover:text-main-blue">
+        Mentions légales
+      </NuxtLink>
+      <NuxtLink to="/confidentialite" class="hover:text-main-blue">
+        Confidentialité
+      </NuxtLink>
+    </nav>
+
+    <div class="mt-6 text-center text-base">
+      <p>
+        {{ company.legalName }} — {{ company.legalForm }} au capital de
+        {{ company.shareCapital }} — RCS {{ company.rcsCity }}
+        {{ company.siren }}
+      </p>
+      <p class="mt-3">Copyright {{ copyrightYear }} - {{ company.brand }}</p>
+    </div>
+  </footer>
 </template>
 
 <script setup lang="ts">
-const copyrightDate = computed(() => new Date().getFullYear())
+import { company, contact } from '~/constants/company'
+
+const copyrightYear = computed(() => new Date().getFullYear())
 </script>

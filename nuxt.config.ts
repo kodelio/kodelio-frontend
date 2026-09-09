@@ -3,7 +3,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Kodelio - Laurent Toson : développeur full-stack JavaScript',
+      title: 'Kodelio - Développement d’applications web et mobiles sur mesure',
       htmlAttrs: { lang: 'fr' },
       meta: [
         { name: 'robots', content: 'index,follow' },
@@ -13,12 +13,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'Votre entreprise souhaite réaliser une application web ou mobile? Je vous accompagne dans la réalisation de vos projets, de la conception à la maintenance.',
-        },
-        {
-          name: 'keywords',
-          content:
-            'mobile, react-native, nestjs, tailwind, mobile, tailwindcss, web, nuxtjs, back-end, vuejs, front-end, web, developpement, developpeur, full-stack, fullstack, node, nextjs, reactjs, antipolis, applications, nodejs, vue, react, logiciels, expo, sophia-antipolis, nuxt, site, sophia, javascript, next, netlify, ios, sites, node.js, vue.js, react.js, software, site, nuxt.js, nest, application, app, nice, blog, freelance, typescript, supabase, api',
+            'Kodelio conçoit et développe des applications web, des applications mobiles iOS et Android et des plateformes SaaS sur mesure, de la conception à la maintenance.',
         },
         { name: 'author', content: 'Laurent Toson' },
       ],
@@ -31,7 +26,6 @@ export default defineNuxtConfig({
           type: 'image/webp',
           href: '/img/full-white.webp',
         },
-        { rel: 'canonical', href: 'https://kodelio.com/' },
       ],
     },
   },
@@ -43,7 +37,17 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', '@sentry/nuxt/module', '@nuxt/eslint'],
 
-  ssr: false,
+  // Le site est pré-rendu en HTML statique : le contenu et les informations
+  // légales doivent rester lisibles sans exécution de JavaScript, notamment par
+  // les moteurs de recherche et lors des vérifications d'identité d'entreprise.
+  ssr: true,
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/support', '/mentions-legales', '/confidentialite'],
+    },
+  },
 
   runtimeConfig: {
     public: {
