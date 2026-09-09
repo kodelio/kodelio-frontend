@@ -1,24 +1,27 @@
 <template>
-  <nav class="sm:px-8 bg-primary w-full fixed">
-    <div class="sm:hidden flex flex-wrap flex-row">
+  <nav class="fixed z-50 w-full bg-primary sm:px-8">
+    <div class="flex flex-row flex-wrap sm:hidden">
       <img
         src="/img/icon.png"
-        alt="Kodelio icon"
-        title="Kodelio icon"
+        alt="Kodelio"
+        title="Kodelio"
         class="h-16 w-auto cursor-pointer"
         width="128"
         height="128"
         @click="scrollTo()"
       />
-      <div
-        class="flex items-center justify-end ml-auto"
+      <button
+        type="button"
+        class="ml-auto flex items-center justify-end p-4"
+        :aria-expanded="isMenuMobileOpen"
+        aria-label="Ouvrir le menu de navigation"
         @click="toggleMobileMenu()"
       >
         <FontAwesomeIcon
           icon="fa-solid fa-bars"
-          class="text-white text-2xl cursor-pointer p-4"
+          class="cursor-pointer text-2xl text-white"
         />
-      </div>
+      </button>
     </div>
     <div class="flex justify-center sm:justify-end">
       <ul
@@ -30,11 +33,13 @@
           :key="menuSection.id"
           class="text-center"
         >
-          <span
-            class="text-white text-2xl hover:text-secondary block pl-3 pr-3 py-4 cursor-pointer"
+          <button
+            type="button"
+            class="block cursor-pointer px-3 py-4 text-2xl text-white hover:text-secondary"
             @click="scrollTo(menuSection.id)"
-            >{{ menuSection.menu }}</span
           >
+            {{ menuSection.menu }}
+          </button>
         </li>
       </ul>
     </div>
