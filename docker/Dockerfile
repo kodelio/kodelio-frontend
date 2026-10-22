@@ -1,5 +1,5 @@
 # Stage 1 - build
-FROM node:lts-alpine3.16 AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /kodelio-frontend
 
@@ -11,7 +11,7 @@ RUN yarn build \
     && yarn cache clean
 
 # Stage 2 - production
-FROM node:lts-alpine3.16 AS final
+FROM node:24-alpine AS final
 ARG PORT=3000
 ENV NODE_ENV="production"
 ENV NUXT_HOST=0.0.0.0
